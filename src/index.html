@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>Grape</title>
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <link href="./styles/output.css" rel="stylesheet">
+</head>
+<body>
+<div class="m-3 sm:w-1/3 sm:m-auto h-screen">
+  <div class="flex justify-center">
+    <img src="img/grape.png" width="112" height="102" alt="logo">
+  </div>
+  <p>
+    <label class="text-xl" for="paste-content">
+      New Paste
+    </label>
+  </p>
+  <textarea class="font-mono p-2 mt-2 w-full h-1/3 border border-primary rounded-xs" id="paste-content" autofocus
+            placeholder="Paste Here..."></textarea>
+  <p class="text-xl">Optional Paste Settings</p>
+  <div id="options-content" class="flex flex-col gap-3 w-full mt-2 p-4 border border-primary rounded-xs">
+    <p class="text-sm">
+      <label for="password-input">
+        Secure this paste:
+      </label>
+    </p>
+    <input class="border border-primary p-2" id="password-input" type="text" placeholder="password">
+    <p class="text-sm">
+      <label for="url-input">
+        Change to custom url:
+      </label>
+    </p>
+    <input class="border border-primary p-2" id="url-input" type="text" placeholder="url">
+    <p class="text-sm">
+      <label for="expiration-input">
+        Paste Expiration:
+      </label>
+    </p>
+    <select class="border border-primary p-2" id="expiration-input">
+      <option>Never</option>
+      <option>10 Minutes</option>
+      <option>1 Hour</option>
+      <option>1 Day</option>
+      <option>1 Weeks</option>
+      <option>2 Weeks</option>
+      <option>1 Month</option>
+      <option>6 Months</option>
+      <option>1 Year</option>
+    </select>
+    <label for="burn-after-read-input" class="text-sm">
+      Burn after read:
+      <input class="border border-primary p-2" id="burn-after-read-input" type="checkbox">
+    </label>
+  </div>
+  <button class="w-full p-2 mt-4 border border-primary bg-secondary hover:bg-accent">Copy URL</button>
+</div>
+</body>
+</html>
