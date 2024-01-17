@@ -1,0 +1,13 @@
+{
+  "name": "grape-client",
+  "version": "1.0.0",
+  "description": "Client for Grape",
+  "scripts": {
+    "tailwind": "npx tailwindcss -i ./src/styles/main.css -o ./src/styles/output.css --watch"
+  },
+  "author": "Dino Kupinic",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}
