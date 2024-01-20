@@ -19,34 +19,34 @@ const expirationOptions: string[] = [
   "2 Weeks",
   "1 Month",
   "6 Months",
-  "1 Year"
+  "1 Year",
 ]
 const expirationSelect = ref<string>(expirationOptions[0])
 
 const assertNever = (value: string): never => {
   throw new Error(`Unexpected selected value: ${value}`)
 }
-const getExpirationTimestamp = (option: typeof expirationOptions[number]): number => {
+const getExpirationTimestamp = (option: (typeof expirationOptions)[number]): number => {
   const now = new Date().getTime()
   switch (option) {
     case "Never":
       return Number.MAX_SAFE_INTEGER
     case "10 Minutes":
-      return now + 10 * 60 * 1000 / 1000
+      return now + (10 * 60 * 1000) / 1000
     case "1 Hour":
-      return now + 60 * 60 * 1000 / 1000
+      return now + (60 * 60 * 1000) / 1000
     case "1 Day":
-      return now + 24 * 60 * 60 * 1000 / 1000
+      return now + (24 * 60 * 60 * 1000) / 1000
     case "1 Week":
-      return now + 7 * 24 * 60 * 60 * 1000 / 1000
+      return now + (7 * 24 * 60 * 60 * 1000) / 1000
     case "2 Weeks":
-      return now + 14 * 24 * 60 * 60 * 1000 / 1000
+      return now + (14 * 24 * 60 * 60 * 1000) / 1000
     case "1 Month":
-      return now + 30 * 24 * 60 * 60 * 1000 / 1000
+      return now + (30 * 24 * 60 * 60 * 1000) / 1000
     case "6 Months":
-      return now + 6 * 30 * 24 * 60 * 60 * 1000 / 1000
+      return now + (6 * 30 * 24 * 60 * 60 * 1000) / 1000
     case "1 Year":
-      return now + 365 * 24 * 60 * 60 * 1000 / 1000
+      return now + (365 * 24 * 60 * 60 * 1000) / 1000
     default:
       return assertNever(option)
   }
@@ -59,12 +59,13 @@ watch([expirationSelect, pastePassword, pasteURL, pasteBurn], () => {
   paste.value.burn_after_read = pasteBurn.value
   paste.value.password = pastePassword.value
 })
-
 </script>
 
 <template>
   <p class="text-xl sm:text-center sm:mb-2">Optional Paste Settings</p>
-  <div class="flex flex-col gap-3 w-100 sm:w-1/2 sm:mb-3 sm:m-auto mt-2 p-4 border border-accent dark:border-accent rounded-md">
+  <div
+    class="flex flex-col gap-3 w-100 sm:w-1/2 sm:mb-3 sm:m-auto mt-2 p-4 border border-accent dark:border-accent rounded-md"
+  >
     <Input v-model="pastePassword" type="text" label=" Secure this paste:" placeholder="password" />
     <Input v-model="pasteURL" type="text" label="Change to custom url:" placeholder="url" />
     <p class="text-sm">Paste Expiration:</p>

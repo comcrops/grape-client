@@ -6,9 +6,9 @@ export async function createPaste(paste: Paste): Promise<URLResponse | undefined
     const response: Response = await fetch(`${import.meta.env.BACKEND_URL}/api/v1/add`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(paste)
+      body: JSON.stringify(paste),
     })
     if (response.status === 201) {
       return await response.json()
@@ -21,7 +21,7 @@ export async function createPaste(paste: Paste): Promise<URLResponse | undefined
 export async function getPaste(url: string): Promise<PasteTextResponse | string | undefined> {
   try {
     const response: Response = await fetch(`${import.meta.env.BACKEND_URL}/api/v1/${url})`, {
-      method: "GET"
+      method: "GET",
     })
     switch (response.status) {
       case 201:
@@ -38,14 +38,17 @@ export async function getPaste(url: string): Promise<PasteTextResponse | string 
   }
 }
 
-export async function getPasteWithPassword(url: string, password: string): Promise<PasteTextResponse | string | undefined> {
+export async function getPasteWithPassword(
+  url: string,
+  password: string,
+): Promise<PasteTextResponse | string | undefined> {
   try {
     const response: Response = await fetch(`${import.meta.env.BACKEND_URL}/api/v1/${url})`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({ password: password })
+      body: JSON.stringify({ password: password }),
     })
     switch (response.status) {
       case 201:

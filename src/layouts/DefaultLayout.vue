@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ThemePreference from "@/components/ui/ThemePreference.vue"
-
 </script>
 
 <template>

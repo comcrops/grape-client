@@ -5,9 +5,9 @@ import Button from "@/components/ui/Button.vue"
 
 const mode = useColorMode()
 
-const { state, next } = useCycleList(['dark', 'light'], { initialValue: mode })
+const { state, next } = useCycleList(["dark", "light"], { initialValue: mode })
 
-watchEffect(() => mode.value = state.value as any)
+watchEffect(() => (mode.value = state.value as any))
 </script>
 
 <template>

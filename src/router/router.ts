@@ -1,9 +1,4 @@
-import {
-  createRouter,
-  createWebHistory,
-  type Router,
-  type RouteRecordRaw,
-} from "vue-router"
+import { createRouter, createWebHistory, type Router, type RouteRecordRaw } from "vue-router"
 
 const DefaultLayout = () => import("@/layouts/DefaultLayout.vue")
 

@@ -9,7 +9,7 @@ export const usePasteStore = defineStore("paste", () => {
     password: "",
     url: "",
     burn_after_read: false,
-    expiring_date: never
+    expiring_date: never,
   })
 
   return { paste }
