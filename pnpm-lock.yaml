@@ -11,9 +11,6 @@ dependencies:
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.3.3)(vue@3.4.15)
-  prism-javascript:
-    specifier: link:prismjs/components/prism-javascript
-    version: link:prismjs/components/prism-javascript
   vue:
     specifier: ^3.3.11
     version: 3.4.15(typescript@5.3.3)
