@@ -30,7 +30,7 @@ const getExpirationTimestamp = (option: typeof expirationOptions[number]): numbe
   const now = new Date().getTime()
   switch (option) {
     case "Never":
-      return new Date("9999-12-31T23:59:59").getTime()
+      return Number.MAX_SAFE_INTEGER
     case "10 Minutes":
       return now + 10 * 60 * 1000 / 1000
     case "1 Hour":
@@ -64,7 +64,7 @@ watch([expirationSelect, pastePassword, pasteURL, pasteBurn], () => {
 
 <template>
   <p class="text-xl sm:text-center sm:mb-2">Optional Paste Settings</p>
-  <div class="flex flex-col gap-3 w-100 sm:w-1/2 sm:mb-3 sm:m-auto mt-2 p-4 border border-foreground rounded-md">
+  <div class="flex flex-col gap-3 w-100 sm:w-1/2 sm:mb-3 sm:m-auto mt-2 p-4 border border-accent dark:border-accent rounded-md">
     <Input v-model="pastePassword" type="text" label=" Secure this paste:" placeholder="password" />
     <Input v-model="pasteURL" type="text" label="Change to custom url:" placeholder="url" />
     <p class="text-sm">Paste Expiration:</p>

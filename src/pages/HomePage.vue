@@ -9,7 +9,7 @@ const createNewPaste = () => {
 </script>
 
 <template>
-  <main class="m-3 w-100 sm:w-2/3 md:w-1/2 sm:m-auto h-screen">
+  <main class="m-3 w-100 sm:w-2/3 md:w-1/2 sm:m-auto h-screen bg-background">
     <ThePasteSection />
     <ThePasteSettingsSection />
     <Button @click="createNewPaste()" class="w-full sm:m-auto sm:w-1/2 mt-3">Create new Paste</Button>

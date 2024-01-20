@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ThemePreference from "@/components/ui/ThemePreference.vue"
 
 </script>
 
@@ -9,4 +10,8 @@
     </div>
   </header>
   <RouterView />
+  <footer class="flex flex-col items-center m-3">
+    <p>Preference</p>
+    <ThemePreference />
+  </footer>
 </template>
