@@ -10,12 +10,12 @@ import router from "@/router/router"
 const { paste } = storeToRefs(usePasteStore())
 const createNewPaste = async () => {
   const pasteURL = await createPaste(paste.value)
-  if (pasteURL) await router.push(pasteURL.url)
+  if (pasteURL) await router.push(`/${pasteURL.url}`)
 }
 </script>
 
 <template>
-  <main class="m-3 w-100 sm:w-2/3 md:w-1/2 sm:m-auto h-screen bg-background">
+  <main class="m-3 w-100 sm:w-3/4 md:w-1/3 sm:m-auto h-screen bg-background">
     <ThePasteSection />
     <ThePasteSettingsSection />
     <Button @click="createNewPaste()" class="w-full sm:m-auto sm:w-1/2 mt-3"

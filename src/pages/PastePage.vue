@@ -3,6 +3,8 @@ import { onMounted, ref } from "vue"
 import { getPaste, getPasteWithPassword } from "@/api/api"
 import type { PasteTextResponse } from "@/model/response"
 import { useRoute, useRouter } from "vue-router"
+import Input from "@/components/ui/Input.vue"
+import Button from "@/components/ui/Button.vue"
 
 const content = ref<string>("")
 const router = useRouter()
@@ -74,5 +76,6 @@ onMounted(async () => {
       autofocus
       readonly
     ></textarea>
+      <Button class="w-full sm:w-32" @click="router.push('/')">Home</Button>
   </main>
 </template>
