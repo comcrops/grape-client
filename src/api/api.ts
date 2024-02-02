@@ -11,7 +11,7 @@ export async function createPaste(paste: Paste | Partial<Paste>): Promise<URLRes
       body: JSON.stringify(paste),
     })
     if (response.status === 201) {
-      return await response.json()
+      return { url: await response.text() }
     }
   } catch (error) {
     console.error(error)

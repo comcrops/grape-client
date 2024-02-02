@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue"
+import { computed, type ComputedRef, onMounted, ref } from "vue"
 import { getPaste, getPasteWithPassword } from "@/api/api"
 import type { PasteTextResponse } from "@/model/response"
 import { useRoute, useRouter } from "vue-router"
@@ -66,6 +66,10 @@ onMounted(async () => {
     }
   }
 })
+
+const copyURL: ComputedRef<string> = computed(() => {
+  return `${import.meta.env.VITE_FRONTEND_URL}${route.fullPath}`
+})
 </script>
 
 <template>
@@ -77,7 +81,8 @@ onMounted(async () => {
       autofocus
     ></textarea>
     <div class="flex grow gap-2 w-full sm:w-96">
-      <CopyToClipboardButton class="grow" :source="content" />
+      <CopyToClipboardButton class="grow" :source="content">Copy Content</CopyToClipboardButton>
+      <CopyToClipboardButton class="grow" :source="copyURL">Copy URL</CopyToClipboardButton>
       <Button @click="router.push('/')" variant="outline" class="grow">Back to Home</Button>
     </div>
   </main>

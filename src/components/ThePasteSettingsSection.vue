@@ -29,23 +29,23 @@ const assertNever = (value: string): never => {
 const getExpirationTimestamp = (option: (typeof expirationOptions)[number]): string => {
   switch (option) {
     case "Never":
-      return "9999-12-31T23:59:59.999Z";
+      return "9999-12-31T23:59:59.999Z"
     case "10 Minutes":
-      return new Date(new Date().getTime() + 10 * 60 * 1000).toISOString();
+      return new Date(new Date().getTime() + 10 * 60 * 1000).toISOString()
     case "1 Hour":
-      return new Date(new Date().getTime() + 60 * 60 * 1000).toISOString();
+      return new Date(new Date().getTime() + 60 * 60 * 1000).toISOString()
     case "1 Day":
-      return new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString();
+      return new Date(new Date().getTime() + 24 * 60 * 60 * 1000).toISOString()
     case "1 Week":
-      return new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString();
+      return new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000).toISOString()
     case "2 Weeks":
-      return new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toISOString();
+      return new Date(new Date().getTime() + 14 * 24 * 60 * 60 * 1000).toISOString()
     case "1 Month":
-      return new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000).toISOString();
+      return new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000).toISOString()
     case "6 Months":
-      return new Date(new Date().getTime() + 6 * 30 * 24 * 60 * 60 * 1000).toISOString();
+      return new Date(new Date().getTime() + 6 * 30 * 24 * 60 * 60 * 1000).toISOString()
     case "1 Year":
-      return new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000).toISOString();
+      return new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000).toISOString()
     default:
       return assertNever(option)
   }
@@ -54,10 +54,8 @@ const getExpirationTimestamp = (option: (typeof expirationOptions)[number]): str
 const { paste } = storeToRefs(usePasteStore())
 watch([expirationSelect, pastePassword, pasteURL, pasteBurn], () => {
   paste.value.expiring_date = getExpirationTimestamp(expirationSelect.value)
-  if (pasteURL.value)
-    paste.value.url = pasteURL.value
-  if (pastePassword.value)
-    paste.value.password = pastePassword.value
+  if (pasteURL.value) paste.value.url = pasteURL.value
+  if (pastePassword.value) paste.value.password = pastePassword.value
   // TODO: wait for backend to support burn after read
   // paste.value.burn_after_read = pasteBurn.value
 })

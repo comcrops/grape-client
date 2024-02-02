@@ -10,7 +10,7 @@ import router from "@/router/router"
 const { paste } = storeToRefs(usePasteStore())
 const createNewPaste = async () => {
   const pasteURL = await createPaste(paste.value)
-  if (pasteURL) await router.push(`/${pasteURL.url}`)
+  if (pasteURL) await router.push(`/paste/${pasteURL.url}`)
 }
 </script>
 
