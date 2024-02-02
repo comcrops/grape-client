@@ -5,6 +5,7 @@ import type { PasteTextResponse } from "@/model/response"
 import { useRoute, useRouter } from "vue-router"
 import Input from "@/components/ui/Input.vue"
 import Button from "@/components/ui/Button.vue"
+import CopyToClipboardButton from "@/components/ui/CopyToClipboardButton.vue"
 
 const content = ref<string>("")
 const router = useRouter()
@@ -69,13 +70,15 @@ onMounted(async () => {
 
 <template>
   <main class="m-3 w-100 sm:w-2/3 md:w-1/2 sm:m-auto h-screen bg-background">
-    <p class="text-xl">Paste {{pasteId}}</p>
+    <p class="text-xl">Paste {{ pasteId }}</p>
     <textarea
       v-model="content"
       class="font-mono p-2 mt-2 sm:mb-2 w-full h-1/2 border border-accent drop-shadow-sm dark:border-accent bg-background min-h-56 rounded-md"
       autofocus
-      readonly
     ></textarea>
-      <Button class="w-full sm:w-32" @click="router.push('/')">Home</Button>
+    <div class="flex grow gap-2 w-full sm:w-96">
+      <CopyToClipboardButton class="grow" :source="content" />
+      <Button @click="router.push('/')" variant="outline" class="grow">Back to Home</Button>
+    </div>
   </main>
 </template>
