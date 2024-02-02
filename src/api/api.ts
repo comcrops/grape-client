@@ -42,8 +42,10 @@ export async function getPasteWithPassword(
   url: string,
   password: string,
 ): Promise<PasteTextResponse | string | undefined> {
+  console.log(url)
+  console.log(password)
   try {
-    const response: Response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/${url})`, {
+    const response: Response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/${url}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,8 +53,8 @@ export async function getPasteWithPassword(
       body: JSON.stringify({ password: password }),
     })
     switch (response.status) {
-      case 201:
-        return await response.json()
+      case 200:
+        return { text: await response.text() }
       case 401:
         return "Wrong Password"
       case 404:

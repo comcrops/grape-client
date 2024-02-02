@@ -3,5 +3,5 @@ export type Paste = {
   password?: string
   url?: string
   burn_after_read: boolean
-  expiring_date: string
+  expiring_date?: string
 }

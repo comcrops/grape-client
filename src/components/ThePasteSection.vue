@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from "vue"
 import { storeToRefs } from "pinia"
-import { usePasteStore } from "@/stores/configStore"
+import { usePasteStore } from "@/stores/pasteStore"
 
 const content = ref<string>("")
 

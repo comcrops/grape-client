@@ -3,13 +3,14 @@ import ThePasteSection from "@/components/ThePasteSection.vue"
 import ThePasteSettingsSection from "@/components/ThePasteSettingsSection.vue"
 import Button from "@/components/ui/Button.vue"
 import { createPaste } from "@/api/api"
-import { usePasteStore } from "@/stores/configStore"
+import { usePasteStore } from "@/stores/pasteStore"
 import { storeToRefs } from "pinia"
 import router from "@/router/router"
 
 const { paste } = storeToRefs(usePasteStore())
 const createNewPaste = async () => {
   const pasteURL = await createPaste(paste.value)
+  paste.value = {}
   if (pasteURL) await router.push(`/paste/${pasteURL.url}`)
 }
 </script>

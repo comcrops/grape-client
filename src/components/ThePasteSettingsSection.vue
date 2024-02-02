@@ -4,7 +4,7 @@ import { ref, watch } from "vue"
 import SelectOption from "@/components/ui/SelectOption.vue"
 import Input from "@/components/ui/Input.vue"
 import { storeToRefs } from "pinia"
-import { usePasteStore } from "@/stores/configStore"
+import { usePasteStore } from "@/stores/pasteStore"
 
 const pastePassword = ref<string>("")
 const pasteURL = ref<string>("")
@@ -53,7 +53,8 @@ const getExpirationTimestamp = (option: (typeof expirationOptions)[number]): str
 
 const { paste } = storeToRefs(usePasteStore())
 watch([expirationSelect, pastePassword, pasteURL, pasteBurn], () => {
-  paste.value.expiring_date = getExpirationTimestamp(expirationSelect.value)
+  // TODO: wait for backend to fix expiration date
+  // paste.value.expiring_date = getExpirationTimestamp(expirationSelect.value)
   if (pasteURL.value) paste.value.url = pasteURL.value
   if (pastePassword.value) paste.value.password = pastePassword.value
   // TODO: wait for backend to support burn after read
