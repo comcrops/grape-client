@@ -12,7 +12,11 @@ const { copy, copied } = useClipboard()
 const { paste } = storeToRefs(usePasteStore())
 const createNewPaste = async () => {
   const pasteURL = await createPaste(paste.value)
-  paste.value = {}
+  // reset paste
+  paste.value = {
+    expiring_date: "9999-12-31T23:59:59.999Z",
+    burn_after_read: false,
+  }
   if (pasteURL)
     await copy(`${import.meta.env.VITE_FRONTEND_URL}/paste/${pasteURL.url}`)
 }

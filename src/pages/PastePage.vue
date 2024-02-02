@@ -32,7 +32,7 @@ async function promptForPassword() {
     switch (result) {
       case "Paste not found":
       case "Paste expired":
-        alert("Paste not found")
+        alert("Paste not found or expired")
         await router.push("/")
         return
       case "Wrong Password":
@@ -55,7 +55,8 @@ onMounted(async () => {
   } else {
     switch (result) {
       case "Paste not found":
-        alert("Paste not found")
+      case "Paste expired":
+        alert("Paste not found or expired")
         await router.push("/")
         return
       case "Password protected":
