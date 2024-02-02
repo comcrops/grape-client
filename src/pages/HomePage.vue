@@ -5,22 +5,28 @@ import Button from "@/components/ui/Button.vue"
 import { createPaste } from "@/api/api"
 import { usePasteStore } from "@/stores/pasteStore"
 import { storeToRefs } from "pinia"
-import router from "@/router/router"
+import { useClipboard } from "@vueuse/core"
+
+const { copy, copied } = useClipboard()
 
 const { paste } = storeToRefs(usePasteStore())
 const createNewPaste = async () => {
   const pasteURL = await createPaste(paste.value)
   paste.value = {}
-  if (pasteURL) await router.push(`/paste/${pasteURL.url}`)
+  if (pasteURL)
+    await copy(`${import.meta.env.VITE_FRONTEND_URL}/paste/${pasteURL.url}`)
 }
 </script>
 
 <template>
-  <main class="m-3 w-100 sm:w-3/4 md:w-1/3 sm:m-auto h-screen bg-background">
+  <main class="m-3 w-100 sm:w-3/4 md:w-2/3 xl:w-1/3 sm:m-auto h-screen bg-background">
     <ThePasteSection />
     <ThePasteSettingsSection />
-    <Button @click="createNewPaste()" class="w-full sm:m-auto sm:w-1/2 mt-3"
-      >Create new Paste</Button
-    >
+    <Button @click="createNewPaste()" class="w-full sm:m-auto sm:w-1/2 mt-3">
+      <span v-if="!copied">
+        Create and copy Paste
+      </span>
+      <span v-else>Copied!</span>
+    </Button>
   </main>
 </template>

@@ -28,6 +28,8 @@ export async function getPaste(url: string): Promise<PasteTextResponse | string 
         return { text: await response.text() }
       case 401:
         return "Password protected"
+      case 410:
+        return "Paste expired"
       case 404:
         return "Paste not found"
       default:
@@ -42,8 +44,6 @@ export async function getPasteWithPassword(
   url: string,
   password: string,
 ): Promise<PasteTextResponse | string | undefined> {
-  console.log(url)
-  console.log(password)
   try {
     const response: Response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/${url}`, {
       method: "POST",

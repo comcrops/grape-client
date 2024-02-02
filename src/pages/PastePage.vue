@@ -3,7 +3,6 @@ import { computed, type ComputedRef, onMounted, ref } from "vue"
 import { getPaste, getPasteWithPassword } from "@/api/api"
 import type { PasteTextResponse } from "@/model/response"
 import { useRoute, useRouter } from "vue-router"
-import Input from "@/components/ui/Input.vue"
 import Button from "@/components/ui/Button.vue"
 import CopyToClipboardButton from "@/components/ui/CopyToClipboardButton.vue"
 
@@ -32,6 +31,7 @@ async function promptForPassword() {
   } else {
     switch (result) {
       case "Paste not found":
+      case "Paste expired":
         alert("Paste not found")
         await router.push("/")
         return
