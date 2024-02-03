@@ -12,5 +12,9 @@ import ThemePreference from "@/components/ui/ThemePreference.vue"
   <footer class="flex flex-col items-center m-3">
     <p>Preference</p>
     <ThemePreference />
+    <a href="https://github.com/s-prechtl/grape-client">
+      <img alt="Git logo" class="mt-2 w-16 h-16" src="@/assets/github.svg"/>
+    </a>
+
   </footer>
 </template>

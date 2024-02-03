@@ -1,7 +1,16 @@
 import type { Paste } from "@/model/paste"
 import type { PasteTextResponse, URLResponse } from "@/model/response"
+import {vModelText} from "vue";
 
 export async function createPaste(paste: Paste | Partial<Paste>): Promise<URLResponse | undefined> {
+  if (!paste.password || paste.password == "") {
+    delete paste.password
+  }
+
+  if (!paste.url || paste.url == "") {
+    delete paste.url
+  }
+
   try {
     const response: Response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/v1/add`, {
       method: "POST",
