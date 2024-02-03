@@ -54,8 +54,8 @@ const getExpirationTimestamp = (option: (typeof expirationOptions)[number]): str
 const { paste } = storeToRefs(usePasteStore())
 watch([expirationSelect, pastePassword, pasteURL, pasteBurn], () => {
   paste.value.expiring_date = getExpirationTimestamp(expirationSelect.value)
-  if (pasteURL.value) paste.value.url = pasteURL.value
-  if (pastePassword.value) paste.value.password = pastePassword.value
+  paste.value.url = pasteURL.value
+  paste.value.password = pastePassword.value
   paste.value.burn_after_read = pasteBurn.value
 })
 </script>

@@ -6,7 +6,13 @@ import { useRoute, useRouter } from "vue-router"
 import Button from "@/components/ui/Button.vue"
 import CopyToClipboardButton from "@/components/ui/CopyToClipboardButton.vue"
 
-const content = ref<string>("")
+const initialContent = localStorage.getItem("content")
+
+if (initialContent) {
+  localStorage.removeItem("content")
+}
+
+const content = ref<string>(initialContent ?? "")
 const router = useRouter()
 const route = useRoute()
 const pasteId = route.params.id
@@ -45,6 +51,8 @@ async function promptForPassword() {
 }
 
 onMounted(async () => {
+  if (content.value !== "") return
+
   const result = await getPaste(pasteId as string)
   if (typeof result !== "string") {
     if (isPasteTextResponse(result)) {
@@ -55,8 +63,15 @@ onMounted(async () => {
   } else {
     switch (result) {
       case "Paste not found":
+        alert("Paste not found")
+        await router.push("/")
+        return
       case "Paste expired":
-        alert("Paste not found or expired")
+        alert("Paste expired")
+        await router.push("/")
+        return
+      case "Paste was already read":
+        alert("Paste is already burnt after it was read")
         await router.push("/")
         return
       case "Password protected":
@@ -79,7 +94,7 @@ const copyURL: ComputedRef<string> = computed(() => {
     <textarea
       v-model="content"
       class="font-mono p-2 mt-2 sm:mb-2 w-full h-1/2 border border-accent drop-shadow-sm dark:border-accent bg-background min-h-56 rounded-md"
-      autofocus
+      disabled
     ></textarea>
     <div class="flex grow gap-2 w-full sm:w-96">
       <CopyToClipboardButton class="grow" :source="content">Copy Content</CopyToClipboardButton>

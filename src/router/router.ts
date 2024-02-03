@@ -16,6 +16,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "/paste/:id",
         name: "paste",
         component: () => import("@/pages/PastePage.vue"),
+        props: true,
       },
     ],
   },

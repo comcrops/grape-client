@@ -29,7 +29,7 @@ export async function getPaste(url: string): Promise<PasteTextResponse | string 
       case 401:
         return "Password protected"
       case 410:
-        return "Paste expired"
+        return await response.text()
       case 404:
         return "Paste not found"
       default:
