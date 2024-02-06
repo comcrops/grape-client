@@ -11,18 +11,21 @@ import router from "@/router/router";
 const {copy, copied} = useClipboard()
 
 const {paste} = storeToRefs(usePasteStore())
+
 const createNewPaste = async () => {
   const text = paste.value.text
-  const pasteURL = await createPaste(paste.value)
-  // reset paste
-  paste.value = {
-    expiring_date: "9999-12-31T23:59:59.999Z",
-    burn_after_read: false,
+  const pasteUrl = await createPaste(paste.value)
+
+  if (pasteUrl?.url!!!!!! /* fuck typescript */) {
+    resetPaste()
+  } else {
+    alert(pasteUrl?.error)
+    return
   }
 
-  const url = `${import.meta.env.VITE_FRONTEND_URL}/paste/${pasteURL?.url}`
+  const url = `${import.meta.env.VITE_FRONTEND_URL}/paste/${pasteUrl?.url}`
 
-  if (pasteURL) {
+  if (pasteUrl) {
     await copy(url)
   }
 
@@ -33,10 +36,18 @@ const createNewPaste = async () => {
   await router.push({
     name: "paste",
     params: {
-      id: pasteURL?.url,
+      id: pasteUrl?.url,
     },
   })
 }
+
+function resetPaste() {
+  paste.value = {
+    expiring_date: "9999-12-31T23:59:59.999Z",
+    burn_after_read: false,
+  }
+}
+
 </script>
 
 <template>
