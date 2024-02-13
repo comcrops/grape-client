@@ -28,10 +28,6 @@ async function createNewPaste() {
     await copy(url)
   }
 
-  if (typeof text === "string") {
-
-  }
-
   await router.push({
     name: "paste",
     params: {
