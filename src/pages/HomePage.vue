@@ -13,7 +13,7 @@ const {copy, copied} = useClipboard()
 
 const {paste} = storeToRefs(usePasteStore())
 
-const createNewPaste = async () => {
+async function createNewPaste() {
   const text = paste.value.text
   const pasteUrl = await createPaste(paste.value)
 
