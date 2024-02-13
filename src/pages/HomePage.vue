@@ -7,6 +7,7 @@ import {usePasteStore} from "@/stores/pasteStore"
 import {storeToRefs} from "pinia"
 import {useClipboard} from "@vueuse/core"
 import router from "@/router/router";
+import { onMounted } from "vue"
 
 const {copy, copied} = useClipboard()
 
@@ -16,9 +17,7 @@ const createNewPaste = async () => {
   const text = paste.value.text
   const pasteUrl = await createPaste(paste.value)
 
-  if (pasteUrl?.url!!!!!! /* fuck typescript */) {
-    resetPaste()
-  } else {
+  if (pasteUrl?.error) {
     alert(pasteUrl?.error)
     return
   }
@@ -30,7 +29,7 @@ const createNewPaste = async () => {
   }
 
   if (typeof text === "string") {
-    localStorage.setItem("content", text)
+
   }
 
   await router.push({
@@ -47,6 +46,10 @@ function resetPaste() {
     burn_after_read: false,
   }
 }
+
+onMounted(() => {
+  resetPaste()
+})
 
 </script>
 

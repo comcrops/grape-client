@@ -5,14 +5,12 @@ import type { PasteTextResponse } from "@/model/response"
 import { useRoute, useRouter } from "vue-router"
 import Button from "@/components/ui/Button.vue"
 import CopyToClipboardButton from "@/components/ui/CopyToClipboardButton.vue"
+import { usePasteStore } from "@/stores/pasteStore"
+import {storeToRefs} from "pinia"
 
-const initialContent = localStorage.getItem("content")
+const {paste} = storeToRefs(usePasteStore())
 
-if (initialContent) {
-  localStorage.removeItem("content")
-}
-
-const content = ref<string>(initialContent ?? "")
+const content = ref<string>(paste.value.text ?? "")
 const router = useRouter()
 const route = useRoute()
 const pasteId = route.params.id
